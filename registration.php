@@ -9,44 +9,44 @@
         <title>Sign up</title>
     </head>
     <body>
-        <div>
+        <div class="title">
             <h1>Registration</h1>
         </div>
         <!--Sends the information from he form to the php using the action and the post method -->
-        <form method="post" action="registration.php"> 
+        <form method="post" action="registration.php" class="register"> 
 
             <!-- Executes the contents of errors.php in the registration.php-->
             <?php include('errors.php'); ?>
-            <div>
+            <div class="inputBox">
                 <label for="username">Username</label>
                 <!-- The value is set to the $username variable initialized from server.php, this allows it to
                     have a prefilled username-->
                 <input type="text" id="username" name="username" value="<?php echo $username; ?>">
             </div>
 
-            <div>
+            <div class="inputBox">
                 <lab for="email">Email</lab>
                 <!-- The value is set to the $email variable initialized from server.php, this allows it to
                     have a prefilled email-->
                 <input type="text" id="email" name="email" value="<?php echo $email; ?>">
             </div>
 
-            <div>
+            <div class="inputBox">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password">
             </div>
 
-            <div>
+            <div class="inputBox">
                 <label for="password_confirmation">Confirm password</label>
                 <input type="password" id="password_confirmation" name="password_confirmation"> 
             </div>
 
-            <div>
+            <div class="inputBox">
                 <!--Submit button with a name to be used in the server.php--> 
                 <button type="submit" class="sign" name='reg_user'>Sign up</button>
             </div>
 
-            <p>Login <a href="./login.php">Login</a></p>
+            <p class="inputBox">Already have an account?<a href="./login.php">Login</a></p>
 
         </form>
     </body>

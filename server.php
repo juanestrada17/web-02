@@ -15,6 +15,18 @@ $errors = array();
 
 $db = mysqli_connect('localhost', 'root', '', 'music_schema');
 
+// Check if the email follows the correct pattern 
+function validateUsername($username){
+    $usernamePattern = '/^\S{1,20}$/';
+    return preg_match($usernamePattern, $username);
+}
+
+
+function validatePassword($password){
+    $passwordPattern = '/(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d]{6,}/';
+    return preg_match($passwordPattern, $password);
+}
+
 // If the submit button in the registration.php is clicked ('reg_user' is part of it)
 if(isset($_POST['reg_user'])){
     // mysqli_real_escape_string takes two parameters. The db we are working on and the input. It makes it safe from sql injections
@@ -24,11 +36,24 @@ if(isset($_POST['reg_user'])){
     $password_confirmation = mysqli_real_escape_string($db, $_POST['password_confirmation']);
 
     // if the username/email/password are empty, then push them into an array
-    if(empty($username)) {array_push($errors, "Username is required");}
-    if(empty($email)){array_push($errors, 'Email is required');}
-    if(empty($password)){array_push($errors, 'Password is required');}
+    // username error
+    if(!validateUsername($username)){
+        array_push($errors, "User name should be non-empty, and within 20 characters long.");
+    }
+
+    // validate email 
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        array_push($errors, 'Email address should be non-empty with the format xyz@xyz.xyz.');
+    }
+
+    // validate the password 
+    if(!validatePassword($password)){
+        array_push($errors, 'Password should be at least 6 characters: 1 uppercase, 1 lowercase.');
+    }
     // if the password and the confirmation are not equal, push it into the array
-    if($password != $password_confirmation){array_push($errors, `Passwords don't match`);}
+    if($password != $password_confirmation){
+        array_push($errors, "Passwords don't match");
+    }
 
     // Validate the inputs from the user    
     $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIMIT 1";

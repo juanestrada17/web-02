@@ -2,7 +2,7 @@
     // Starts the session 
     session_start(); 
 
-
+// If a user is not logged in, sends a message
 if (!isset($_SESSION['username'])) {
     $_SESSION['msg'] = "You must log in first";
     header('location: login.php');
@@ -23,11 +23,11 @@ if (isset($_GET['logout'])) {
     </head>
     <body>
         <div class="header">
-            <h2>Home Page</h2>
+            <h2>Home</h2>
         </div>
-        Welcome to my project page	
+        Web dev assi two content
         <div class="content">
-            <!-- notification message -->
+            <!-- notification message if the user is logged i-->
             <?php if (isset($_SESSION['success'])) : ?>
             <div class="error success" >
                 <h3>

@@ -8,26 +8,26 @@
         <title>Login Page</title>
     </head>
     <body>
-        <div>
+        <div class="title">
             <h2>Login</h2>
         </div>
         
-        <form method="post" action="login.php">
+        <form method="post" action="login.php" class="login">
             <?php include('errors.php'); ?>
-            <div>
+            <div class="inputBox">
                 <label>Username</label>
                 <input type="text" name="username">
             </div>
 
-            <div>
+            <div class="inputBox">
                 <label>Password</label>
                 <input type="password" name="password">
             </div>
 
-            <div>
+            <div class="inputBox">
                 <button type="submit" class="btn" name="login_usr">Login</button>
             </div>
-            <p>Register <a href="./registration.php">Register</a></p>
+            <p class="inputBox">Register <a href="./registration.php">Register</a></p>
         </form>
     </body>
 </html>
